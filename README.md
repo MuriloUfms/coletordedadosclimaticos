@@ -36,6 +36,8 @@ Esta API permite a coleta de dados climáticos, como temperatura, umidade, veloc
    ```bash
    pip install -r requirements.txt
    ```
+   Opcionalmente, você pode usar o poetry para gerenciar as dependências.
+
 
 4. Configure as variáveis de ambiente:
 
@@ -95,7 +97,7 @@ Esta API permite a coleta de dados climáticos, como temperatura, umidade, veloc
   }
   ```
 
-- `GET /api/v1/coletas`
+- `GET /api/v1/coletas?page=1&size=10`
   
   Lista as coletas de dados climáticos.
 
