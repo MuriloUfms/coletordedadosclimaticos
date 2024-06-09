@@ -19,8 +19,8 @@ Esta API permite a coleta de dados climáticos, como temperatura, umidade, veloc
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/seu_usuario/seu_repositorio.git
-   cd seu_repositorio
+   git clone https://github.com/MuriloUfms/coletordedadosclimaticos.git
+   cd coletordedadosclimaticos
    ```
 
 2. Crie e ative um ambiente virtual:
