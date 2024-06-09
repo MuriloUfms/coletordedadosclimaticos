@@ -8,7 +8,7 @@ Esta API permite a coleta de dados climáticos, como temperatura, umidade, veloc
 
 ## Requisitos
 
-- Python 3.11+
+- Python 3.10+
 - FastAPI
 - SQLAlchemy
 - requests
