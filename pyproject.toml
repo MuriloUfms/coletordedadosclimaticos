@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "coletordedadosclimaticos"
+version = "0.1.0"
+description = "Projeto para coleta de dados climáticos usando API do OpenWeatherMap"
+authors = ["Murilo Lobo Teixeira <murilo.lobo@ufms.br>"]
+readme = "README.md"
+
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.111.0"
+fastapi-pagination = "^0.12.25"
+pydantic-settings = "^2.3.1"
+requests = "^2.32.3"
+sqlalchemy = "^2.0.30"
+uvicorn = "^0.30.1"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.4.2"
+isort = "^5.13.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
