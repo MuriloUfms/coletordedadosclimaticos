@@ -66,6 +66,8 @@ Esta API permite a coleta de dados climáticos, como temperatura, umidade, veloc
 
    Abra o navegador e acesse `http://127.0.0.1:8000/` para visualizar a documentação gerada pelo Swagger UI.
 
+   ![img.png](doc/img.png)
+
 ## Licença
 
 Este projeto está licenciado sob os termos da licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
