@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "coletor-service"
+version = "0.1.0"
+description = "Api coletora de dados climáticos usando API do OpenWeatherMap"
+authors = ["Murilo Lobo Teixeira <murilo.lobo@ufms.br>"]
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.111.0"
+fastapi-pagination = "^0.12.25"
+pydantic-settings = "^2.3.1"
+requests = "^2.32.3"
+sqlalchemy = "^2.0.30"
+psycopg2-binary = "^2.9.9"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.4.9"
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

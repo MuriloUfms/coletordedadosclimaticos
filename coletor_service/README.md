@@ -59,7 +59,7 @@ Esta API permite a coleta de dados climáticos, como temperatura, umidade, veloc
 1. Inicie o servidor FastAPI:
 
    ```bash
-   uvicorn src.main:app
+   fastapi src/main.py 
    ```
 
 2. Acesse a documentação interativa da API:
@@ -70,4 +70,4 @@ Esta API permite a coleta de dados climáticos, como temperatura, umidade, veloc
 
 ## Licença
 
-Este projeto está licenciado sob os termos da licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto está licenciado sob os termos da licença MIT. Veja o arquivo [LICENSE](../LICENSE) para mais detalhes.
