@@ -1,15 +1,25 @@
 from contextlib import asynccontextmanager
 
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from fastapi import FastAPI
 from fastapi_pagination import add_pagination
 
+from settings import Settings
 from src.db import Base, engine
 from src.routes import router as subscriber_router
+from src.services import send_newsletter
 
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
     Base.metadata.create_all(engine)
+
+    scheduler = AsyncIOScheduler()
+    scheduler.add_job(
+        send_newsletter, 'interval', seconds=Settings.NEWSLETTER_INTERVAL_SECONDS
+    )
+    scheduler.start()
+
     yield
 
 

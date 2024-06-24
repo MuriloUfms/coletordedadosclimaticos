@@ -2,14 +2,10 @@ from datetime import datetime
 
 from pydantic import BaseModel, EmailStr, Field
 
-from src.models import FrequencyEnum
-
 
 class SubscriberSchema(BaseModel):
     email: EmailStr = Field(..., description='Email do inscrito')
-    frequency: FrequencyEnum = Field(
-        ..., description='Frequência de envio da newsletter'
-    )
+    interval_in_hours: int = Field(24, description='Intervalo de envio em horas')
 
 
 class UnsubscribeRequest(BaseModel):

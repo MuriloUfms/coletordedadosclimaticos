@@ -8,11 +8,10 @@ from sqlalchemy import select
 from src.db import Session, get_session
 from src.models import Subscriber
 from src.schemas import (
+    SubscribeResponse,
     SubscriberSchema,
     UnsubscribeRequest,
-    SubscribeResponse,
 )
-from src.services import get_data
 
 router = APIRouter()
 
@@ -28,13 +27,15 @@ async def subscribe(
             status_code=status.HTTP_400_BAD_REQUEST, detail='Email already subscribed'
         )
 
-    subscriber = Subscriber(email=payload.email, frequency=payload.frequency)
+    subscriber = Subscriber(
+        email=payload.email, interval_in_hours=payload.interval_in_hours
+    )
     session.add(subscriber)
     session.commit()
 
     return {
         'message': f'{payload.email} subscribed successfully '
-                   f'with frequency {payload.frequency}'
+        f'and will receive the newsletter every {payload.interval_in_hours} hours'
     }
 
 
@@ -58,15 +59,3 @@ async def unsubscribe(
 @router.get('/subscribers', response_model=Page[SubscriberSchema])
 async def list_subscribers(session: Annotated[Session, Depends(get_session)]):
     return paginate(session, select(Subscriber))
-
-
-@router.post('/send-newsletter')
-async def send_newsletter(session: Annotated[Session, Depends(get_session)]):
-    subscribers = session.execute(select(Subscriber)).scalars().all()
-    data = get_data()
-
-    # TODO: Implement email sending logic
-    for subscriber in subscribers:
-        print(f'Sending newsletter to {subscriber.email}: {data}')
-
-    return {'message': 'Newsletter sent successfully'}

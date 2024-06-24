@@ -1,16 +1,9 @@
-from enum import StrEnum
+from datetime import UTC, datetime
 
-from sqlalchemy import Enum, String
+from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column
 
 from src.db import Base
-
-
-class FrequencyEnum(StrEnum):
-    weekly = 'weekly'
-    biweekly = 'biweekly'
-    monthly = 'monthly'
-    semiannual = 'semiannual'
 
 
 class Subscriber(Base):
@@ -18,4 +11,7 @@ class Subscriber(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     email: Mapped[str] = mapped_column(String, unique=True, index=True)
-    frequency: Mapped[FrequencyEnum] = mapped_column(Enum(FrequencyEnum))
+    interval_in_hours: Mapped[int] = mapped_column(default=24)
+    last_sent: Mapped[datetime] = mapped_column(
+        default=datetime(1970, 1, 1, tzinfo=UTC)
+    )
