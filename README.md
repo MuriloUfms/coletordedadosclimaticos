@@ -18,3 +18,10 @@ Aplicação baseada em microserviços para coleta de dados climáticos e subscri
 - Criação do serviço `newsletter_service` para registro de usuários e envio de notificações.
 
 - docker-compose para execução dos serviços usando postgresql como banco de dados.
+
+
+### [TP - Entrega 2] Newsletter Service - Envio de boletins informativos
+
+- Adicionado agendador de tarefas que coleta os dados de 30 em 30 minutos e envia emails para os usuários cadastrados.
+
+- Mudança na forma de armazenar o intervalo de envio de boletins (antes era uma palavra fixa, agora um inteiro que representa o intervalo em horas).
