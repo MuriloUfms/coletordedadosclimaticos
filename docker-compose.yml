@@ -1,12 +1,12 @@
 services:
-  # #  Gateway Service
-  # gateway_service:
-  #   container_name: gateway_service
-  #   build:
-  #     context: ./gateway_service
-  #   ports:
-  #     - "8003:8000"
-  #   restart: always
+  #  Gateway Service
+  gateway_service:
+    container_name: gateway_service
+    build:
+      context: ./gateway_service
+    ports:
+      - "8003:8000"
+    restart: always
   
   #  Coletor Service
   coletor_service_database:
