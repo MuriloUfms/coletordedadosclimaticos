@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "gateway-service"
+version = "0.1.0"
+description = "Api de gateway para o sistema de coleta de dados climaticos"
+authors = ["Murilo Lobo Teixeira <murilo.lobo@ufms.br>"]
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.111.0"
+pydantic-settings = "^2.3.1"
+fastapi-pagination = "^0.12.25"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.4.9"
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

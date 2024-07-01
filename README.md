@@ -25,3 +25,10 @@ Aplicação baseada em microserviços para coleta de dados climáticos e subscri
 - Adicionado agendador de tarefas que coleta os dados de 30 em 30 minutos e envia emails para os usuários cadastrados.
 
 - Mudança na forma de armazenar o intervalo de envio de boletins (antes era uma palavra fixa, agora um inteiro que representa o intervalo em horas).
+
+
+### [TP - Entrega 3] API Gateway + Processo de Implantação
+
+- Criação do serviço `gateway_service` para roteamento de requisições.
+
+- Adicionado gateway_service no docker-compose.
