@@ -44,7 +44,7 @@ def get_subscribers_emails():
     emails = []
     for sub in subscribers:
         last_sent_conscious = sub.last_sent.replace(tzinfo=UTC)
-        if last_sent_conscious + timedelta(hours=sub.interval_in_hours) < now:
+        if last_sent_conscious + timedelta(seconds=sub.frequency) < now:
             emails.append(sub.email)
             sub.last_sent = now
 
@@ -54,10 +54,7 @@ def get_subscribers_emails():
 
 async def send_mail(recipients: list[str], data: dict):
     if not recipients:
-        print('Nenhum email para enviar')
         return
-
-    print(f'Enviando newsletter para {recipients}')
 
     message = MessageSchema(
         subject='Clima da FACOM - Newsletter',

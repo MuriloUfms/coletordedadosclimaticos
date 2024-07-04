@@ -11,7 +11,7 @@ class Subscriber(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     email: Mapped[str] = mapped_column(String, unique=True, index=True)
-    interval_in_hours: Mapped[int] = mapped_column(default=24)
+    frequency: Mapped[int] = mapped_column(default=60 * 60 * 24)  # 24 hours
     last_sent: Mapped[datetime] = mapped_column(
         default=datetime(1970, 1, 1, tzinfo=UTC)
     )

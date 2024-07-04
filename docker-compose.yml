@@ -1,14 +1,65 @@
 services:
-  #  Gateway Service
-  gateway_service:
-    container_name: gateway_service
+  newsletter_service:
+    container_name: newsletter_service
     build:
-      context: ./gateway_service
-    ports:
-      - "8003:8000"
+      context: ./newsletter_service
     restart: always
+    volumes:
+        - ./newsletter_service:/app
+    environment:
+    
+        - NEWSLETTER_INTERVAL_SECONDS=1800
+        
+        - DATABASE_URI=postgresql://postgres:postgres@newsletter_service_database:5432/postgres
+        - API_COLECTOR_URL=http://coletor_service:8000/coletor
+        - MAIL_USERNAME=murilo.lobo@ufms.br
+        - MAIL_FROM=murilo.lobo@ufms.br
+        - MAIL_PASSWORD=ffH625@GX2
+        - MAIL_SERVER=smtp.gmail.com
+        - MAIL_PORT=587
+    depends_on:
+      - newsletter_service_database
   
-  #  Coletor Service
+  coletor_service:
+    container_name: coletor_service
+    build:
+      context: ./coletor_service
+    restart: always
+    volumes:
+        - ./coletor_service:/app
+    environment:
+        - DATABASE_URI=postgresql://postgres:postgres@coletor_service_database:5432/postgres
+        - OPEN_WEATHER_URL=https://api.openweathermap.org/data/2.5/weather
+        - OPEN_WEATHER_API_KEY=2ea11a2e73abcc4c95cadc692ec13116
+    depends_on:
+      - coletor_service_database
+  
+  web_service:
+    container_name: web_service
+    build:
+      context: ./web_service
+    restart: always
+    volumes:
+        - ./web_service:/app
+    healthcheck:
+      test: HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health || exit 1
+    environment:
+      - BACKEND_URL=http://host.docker.internal
+    depends_on:
+      - coletor_service
+      - newsletter_service
+  
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - "80:8080"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - coletor_service
+      - newsletter_service
+
   coletor_service_database:
     container_name: coletor_database
     image: postgres:13
@@ -18,26 +69,9 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
-    ports:
-      - "5431:5432"
     volumes:
     - app-coletor_service_database-data:/var/lib/postgresql/data/pgdata
-  
-  coletor_service:
-    container_name: coletor_service
-    build:
-      context: ./coletor_service
-    ports:
-      - "8001:8000"
-    restart: always
-    volumes:
-        - ./coletor_service:/app
-    environment:
-        - DATABASE_URI=postgresql://postgres:postgres@coletor_service_database:5432/postgres
-    depends_on:
-      - coletor_service_database
 
-  #  Newsletter Service
   newsletter_service_database:
     container_name: newsletter_database
     image: postgres:13
@@ -47,24 +81,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
-    ports:
-      - "5432:5432"
     volumes:
     - app-newsletter_service_database-data:/var/lib/postgresql/data/pgdata
-
-  newsletter_service:
-    container_name: newsletter_service
-    build:
-      context: ./newsletter_service
-    ports:
-      - "8002:8000"
-    restart: always
-    volumes:
-        - ./newsletter_service:/app
-    environment:
-        - DATABASE_URI=postgresql://postgres:postgres@newsletter_service_database:5432/postgres
-    depends_on:
-      - newsletter_service_database
 
 volumes:
   app-newsletter_service_database-data:

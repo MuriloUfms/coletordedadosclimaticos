@@ -16,11 +16,11 @@ async def lifespan(_: FastAPI):
 app = FastAPI(
     title='Coletor de Dados Climáticos',
     description='API para coletar dados climáticos de uma localização geográfica',
+    openapi_url='/coletor/openapi.json',
+    docs_url='/coletor/docs',
     version='1.0',
-    docs_url='/',
-    redoc_url='/redoc',
     lifespan=lifespan,
 )
 add_pagination(app)
 
-app.include_router(coleta_router, prefix='/api/v1', tags=['Coleta'])
+app.include_router(coleta_router, prefix='/coletor', tags=['Coleta'])

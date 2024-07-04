@@ -7,7 +7,7 @@ class Base(BaseSettings):
     )
 
     DATABASE_URI: str = 'sqlite:///:memory:'
-    OPEN_WEATHER_API_KEY: str = None
+    OPEN_WEATHER_API_KEY: str = ''
     OPEN_WEATHER_URL: str = 'https://api.openweathermap.org/data/2.5/weather'
 
 
