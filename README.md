@@ -44,6 +44,8 @@ Os serviços devem ser executados e configurados individualmente.
 
 [Entregas](docs/entregas.md)
 
+![arquitetura](arquitetura.png)
+
 ## Licença
 
 Este projeto está licenciado sob os termos da licença MIT. Veja o arquivo [LICENSE](../LICENSE) para mais detalhes.
