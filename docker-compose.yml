@@ -12,11 +12,11 @@ services:
         
         - DATABASE_URI=postgresql://postgres:postgres@newsletter_service_database:5432/postgres
         - API_COLECTOR_URL=http://coletor_service:8000/coletor
-        - MAIL_USERNAME=murilo.lobo@ufms.br
-        - MAIL_FROM=murilo.lobo@ufms.br
-        - MAIL_PASSWORD=ffH625@GX2
-        - MAIL_SERVER=smtp.gmail.com
-        - MAIL_PORT=587
+        - MAIL_USERNAME=<EMAIL>
+        - MAIL_FROM=<EMAIL>
+        - MAIL_PASSWORD=<PASSWORD>
+        - MAIL_SERVER=<SMTP_SERVER>
+        - MAIL_PORT=<SMTP_PORT>
     depends_on:
       - newsletter_service_database
   
@@ -30,7 +30,7 @@ services:
     environment:
         - DATABASE_URI=postgresql://postgres:postgres@coletor_service_database:5432/postgres
         - OPEN_WEATHER_URL=https://api.openweathermap.org/data/2.5/weather
-        - OPEN_WEATHER_API_KEY=2ea11a2e73abcc4c95cadc692ec13116
+        - OPEN_WEATHER_API_KEY=<YOUR_API_KEY>
     depends_on:
       - coletor_service_database
   
