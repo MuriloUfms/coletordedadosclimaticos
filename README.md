@@ -40,6 +40,9 @@ Os serviços devem ser executados e configurados individualmente.
    - Coletor Service: [http://localhost/coletor/docs](http://localhost/coletor/docs)
    - Newsletter Service: [http://localhost/newsletter/docs](http://localhost/newsletter/docs)
 
+## Documentação
+
+[Entregas](docs/entregas.md)
 
 ## Licença
 
